@@ -47,11 +47,20 @@
     }
   </style>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
   <script>
+    function encryptPassword(password) {
+      var encrypted = CryptoJS.AES.encrypt(password, "your-secret-key").toString();
+      return encrypted;
+    }
+
     function showPasswordPrompt() {
       var passwordInput = document.getElementById("password-input");
       var password = passwordInput.value.trim();
-      if (password === "simosimo") {
+      var encryptedPassword = encryptPassword(password);
+
+      if (encryptedPassword === "U2FsdGVkX1/1YAdY6mNIZQ2AaASZAH4w") {
         passwordInput.value = "";
         document.getElementById("password-prompt").style.display = "none";
         window.location.href = "https://edate.lol/home";
