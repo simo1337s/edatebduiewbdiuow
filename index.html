@@ -45,7 +45,7 @@
     .password-prompt button:hover {
       transform: translateY(-3px);
     }
-    
+
     .visited-count {
       margin-top: 20px;
       font-size: 24px;
@@ -70,7 +70,7 @@
         .then(response => response.json())
         .then(data => {
           ipAddress = data.ip;
-          return fetch("https://api.countapi.xyz/update/edate.lol/" + ipAddress + "?amount=1");
+          return fetch("https://api.countapi.xyz/update/edate.lol/visited-count?amount=1");
         })
         .then(response => response.json())
         .then(data => {
@@ -88,7 +88,7 @@
 </head>
 <body>
   <h1>Welcome to edate.lol</h1>
-  
+
   <div id="visited-count" class="visited-count">Loading...</div>
 
   <div id="password-prompt" class="password-prompt">
