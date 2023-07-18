@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>edate.lol</title>
-  <meta content="edate.lol" property="og:title" />
-  <meta content="meow :3" property="og:description" />
+  <meta content="Embed Title" property="og:title" />
+  <meta content="b4b is a dirty little edater" property="og:description" />
   <meta content="edate.lol" property="og:url" />
   <meta content="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.dog-learn.com%2Fdog-breeds%2Fdachshund%2Fdachshund-i2.jpg&f=1&nofb=1&ipt=eb3219a9f6b7c73c3fa0418952d730c17d27f61d6b4ce2bfb55df337a2880bf8&ipo=images" property="og:image" />
   <meta content="#43B581" data-react-helmet="true" name="theme-color" />
-  
+
   <style>
     body {
       background-color: black;
@@ -18,65 +18,65 @@
       flex-direction: column;
       height: 100vh;
       font-size: 30px;
+      font-family: Arial, sans-serif;
     }
+
     .password-prompt {
       margin-top: 20px;
       display: flex;
       align-items: center;
     }
+
     .password-prompt input[type="password"] {
       margin-left: 10px;
       padding: 5px;
     }
+    
+    .visited-count {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
   </style>
-  
+
   <script>
     function showPasswordPrompt() {
-      var password = document.getElementById("password-input").value;
+      var passwordInput = document.getElementById("password-input");
+      var password = passwordInput.value.trim();
       if (password === "simosimo") {
+        passwordInput.value = "";
         document.getElementById("password-prompt").style.display = "none";
         document.body.innerHTML = "";
       }
     }
-    
+
     function updateVisitedCount() {
-      var visitedIPs = localStorage.getItem("visitedIPs") || "";
-      if (!visitedIPs.includes(ipAddress)) {
-        visitedIPs += ipAddress + ",";
-        localStorage.setItem("visitedIPs", visitedIPs);
-        
-        if (localStorage.getItem("visitCount")) {
-          var count = parseInt(localStorage.getItem("visitCount"));
-          count++;
-          localStorage.setItem("visitCount", count);
-        } else {
-          localStorage.setItem("visitCount", 1);
-        }
-      }
-      
-      document.getElementById("counter").innerText = "Visited " + localStorage.getItem("visitCount") + " times";
-    }
-    
-    window.onload = function() {
       var ipAddress = "unknown";
-      
-      // Get IP address
       fetch("https://api.ipify.org?format=json")
         .then(response => response.json())
         .then(data => {
           ipAddress = data.ip;
-          updateVisitedCount();
+          return fetch("https://api.countapi.xyz/hit/edate.lol/" + ipAddress);
+        })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("visited-count").innerText = "Visited: " + data.value;
         })
         .catch(error => {
-          console.log("Error fetching IP address:", error);
-          updateVisitedCount();
+          console.log("Error fetching IP address or visited count:", error);
         });
+    }
+
+    window.onload = function() {
+      updateVisitedCount();
     }
   </script>
 </head>
 <body>
-  <div id="counter"></div>
+  <h1>Welcome to edate.lol</h1>
   
+  <div class="visited-count" id="visited-count">Loading...</div>
+
   <div id="password-prompt" class="password-prompt">
     <span>Enter password:</span>
     <input type="password" id="password-input">
