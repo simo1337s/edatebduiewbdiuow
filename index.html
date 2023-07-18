@@ -45,12 +45,6 @@
     .password-prompt button:hover {
       transform: translateY(-3px);
     }
-
-    .visited-count {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
-    }
   </style>
 
   <script>
@@ -60,36 +54,15 @@
       if (password === "simosimo") {
         passwordInput.value = "";
         document.getElementById("password-prompt").style.display = "none";
-        document.body.innerHTML = "";
+        window.location.href = "https://edate.lol/home";
+      } else {
+        window.location.href = "https://edate.lol";
       }
-    }
-
-    function updateVisitedCount() {
-      var ipAddress = "unknown";
-      fetch("https://api.ipify.org?format=json")
-        .then(response => response.json())
-        .then(data => {
-          ipAddress = data.ip;
-          return fetch("https://api.countapi.xyz/update/edate.lol/visited-count?amount=1");
-        })
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById("visited-count").innerText = "This website was visited " + data.value + " times by unique IPs.";
-        })
-        .catch(error => {
-          console.log("Error fetching IP address or visited count:", error);
-        });
-    }
-
-    window.onload = function() {
-      updateVisitedCount();
     }
   </script>
 </head>
 <body>
   <h1>Welcome to edate.lol</h1>
-
-  <div id="visited-count" class="visited-count">Loading...</div>
 
   <div id="password-prompt" class="password-prompt">
     <input type="password" id="password-input" placeholder="Enter password">
