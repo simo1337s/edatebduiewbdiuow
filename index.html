@@ -21,61 +21,32 @@
       font-family: Arial, sans-serif;
     }
 
-    .password-prompt {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-    }
-
-    .password-prompt input[type="password"] {
-      margin-left: 10px;
-      padding: 5px;
-      font-size: 16px;
-    }
-
-    .password-prompt button {
-      border: none;
+    .enter-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid white;
       background-color: transparent;
-      cursor: pointer;
-      font-size: 24px;
       color: white;
-      transition: transform 0.2s ease;
+      font-size: 24px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    .password-prompt button:hover {
-      transform: translateY(-3px);
+    .enter-button:hover {
+      background-color: white;
+      color: black;
     }
   </style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-
   <script>
-    function encryptPassword(password) {
-      var encrypted = CryptoJS.AES.encrypt(password, "your-secret-key").toString();
-      return encrypted;
-    }
-
-    function showPasswordPrompt() {
-      var passwordInput = document.getElementById("password-input");
-      var password = passwordInput.value.trim();
-      var encryptedPassword = encryptPassword(password);
-
-      if (encryptedPassword === "U2FsdGVkX1/1YAdY6mNIZQ2AaASZAH4w") {
-        passwordInput.value = "";
-        document.getElementById("password-prompt").style.display = "none";
-        window.location.href = "https://edate.lol/home";
-      } else {
-        window.location.href = "https://edate.lol";
-      }
+    function redirectToHome() {
+      window.location.href = "https://edate.lol/home";
     }
   </script>
 </head>
 <body>
   <h1>Welcome to edate.lol</h1>
 
-  <div id="password-prompt" class="password-prompt">
-    <input type="password" id="password-input" placeholder="Enter password">
-    <button onclick="showPasswordPrompt()">&#10148;</button>
-  </div>
+  <button class="enter-button" onclick="redirectToHome()">Enter</button>
 </body>
 </html>
