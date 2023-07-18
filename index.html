@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>edate.lol</title>
-  <meta content="Embed Title" property="og:title" />
-  <meta content="b4b is a dirty little edater" property="og:description" />
+  <meta content="edate.lol" property="og:title" />
+  <meta content="meow :3" property="og:description" />
   <meta content="edate.lol" property="og:url" />
   <meta content="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.dog-learn.com%2Fdog-breeds%2Fdachshund%2Fdachshund-i2.jpg&f=1&nofb=1&ipt=eb3219a9f6b7c73c3fa0418952d730c17d27f61d6b4ce2bfb55df337a2880bf8&ipo=images" property="og:image" />
   <meta content="#43B581" data-react-helmet="true" name="theme-color" />
@@ -30,6 +30,20 @@
     .password-prompt input[type="password"] {
       margin-left: 10px;
       padding: 5px;
+      font-size: 16px;
+    }
+
+    .password-prompt button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    .password-prompt button:hover {
+      transform: translateY(-3px);
     }
     
     .visited-count {
@@ -56,11 +70,11 @@
         .then(response => response.json())
         .then(data => {
           ipAddress = data.ip;
-          return fetch("https://api.countapi.xyz/hit/edate.lol/" + ipAddress);
+          return fetch("https://api.countapi.xyz/update/edate.lol/" + ipAddress + "?amount=1");
         })
         .then(response => response.json())
         .then(data => {
-          document.getElementById("visited-count").innerText = "Visited: " + data.value;
+          document.getElementById("visited-count").innerText = "This website was visited " + data.value + " times by unique IPs.";
         })
         .catch(error => {
           console.log("Error fetching IP address or visited count:", error);
@@ -75,12 +89,11 @@
 <body>
   <h1>Welcome to edate.lol</h1>
   
-  <div class="visited-count" id="visited-count">Loading...</div>
+  <div id="visited-count" class="visited-count">Loading...</div>
 
   <div id="password-prompt" class="password-prompt">
-    <span>Enter password:</span>
-    <input type="password" id="password-input">
-    <button onclick="showPasswordPrompt()">Submit</button>
+    <input type="password" id="password-input" placeholder="Enter password">
+    <button onclick="showPasswordPrompt()">&#10148;</button>
   </div>
 </body>
 </html>
