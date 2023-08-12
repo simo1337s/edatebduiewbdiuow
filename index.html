@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sai</title>
+<title>Discord Widget</title>
 <link rel="icon" type="image/jpeg" href="https://cdn.discordapp.com/attachments/1130713534871904357/1140019095534837801/0713930724fcdd052c217cf92d795851.jpg">
 <meta content="edate.lol" property="og:title" />
 <meta content="saimere" property="og:description" />
@@ -19,15 +19,48 @@
     min-height: 100vh;
     background-color: black;
   }
-  iframe {
+  .discord-widget {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .discord-widget iframe {
     width: 80%; 
     max-width: 800px; 
     height: 80vh; 
     border: none;
   }
+  .join-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif; /* Use a smooth font */
+  }
+  .join-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .made-by {
+    color: white;
+    font-size: 14px;
+    margin-left: 20px;
+  }
 </style>
 </head>
 <body>
-<iframe src="https://discord.com/widget?id=1132496860465086517&theme=dark" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+<div class="discord-widget">
+  <iframe src="https://discord.com/widget?id=1132496860465086517&theme=dark" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  <a class="join-button" href="https://discord.com/invite/saimere" target="_blank">
+    <img src="https://cdn.discordapp.com/banners/1132496860465086517/a_b3ea206e8577bfd85bf0b51b9b2dcabf.gif?size=1024" alt="Join for eGirls">
+    <p>Click here for E-girls, Giveaway's, & More.</p>
+  </a>
+  <p class="made-by">Made by simo</p>
+</div>
 </body>
 </html>
