@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discord Widget</title>
+<title>sai</title>
 <link rel="icon" type="image/jpeg" href="https://cdn.discordapp.com/attachments/1130713534871904357/1140019095534837801/0713930724fcdd052c217cf92d795851.jpg">
 <meta content="edate.lol" property="og:title" />
 <meta content="saimere" property="og:description" />
@@ -51,17 +51,21 @@
     font-size: 12px;
     margin-top: 10px;
   }
+  .redirecting-message {
+    display: none;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+  }
   
   @media (max-width: 480px) {
-    .discord-widget iframe {
-      height: 40vh;
+    .discord-widget {
+      display: none;
     }
-    .join-button {
-      padding: 8px 16px;
-      font-size: 12px;
-    }
-    .made-by {
-      font-size: 10px;
+    .redirecting-message {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 20px;
     }
   }
 </style>
@@ -69,6 +73,9 @@
   function redirectToMobile() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
+      document.querySelector('.discord-widget').style.display = 'none';
+      document.querySelector('.redirecting-message').textContent = 'Redirecting...';
+      document.querySelector('.made-by').textContent = 'Made by simo. If there are any issues, please contact him.';
       window.location.href = 'https://discord.com/invite/saimere';
     }
   }
@@ -83,6 +90,9 @@
     <p>Click here for E-girls, Giveaway's, & More.</p>
   </a>
   <p class="made-by">Made by simo</p>
+</div>
+<div class="redirecting-message">
+  Redirecting...
 </div>
 </body>
 </html>
