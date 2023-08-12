@@ -19,6 +19,7 @@
     background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp4462550.png&f=1&nofb=1&ipt=980694f756bc5974dd744974cbfacaa84a7561bdd38b368e976f8e3ed0424e21&ipo=images");
     background-size: cover;
     background-position: center;
+    user-select: none; /* Disable text selection */
   }
   .discord-widget {
     display: flex;
@@ -66,6 +67,16 @@
   }
 </style>
 <script>
+  function disableShortcutsAndContextMenu(event) {
+    if (
+      (event.ctrlKey && event.shiftKey && event.key === "i") ||
+      (event.ctrlKey && event.key === "u") ||
+      event.type === "contextmenu"
+    ) {
+      event.preventDefault();
+    }
+  }
+  
   function redirectToMobile() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
@@ -75,7 +86,11 @@
       window.location.href = 'https://discord.com/invite/saimere';
     }
   }
-  window.onload = redirectToMobile;
+  window.onload = function() {
+    document.addEventListener("keydown", disableShortcutsAndContextMenu);
+    document.addEventListener("contextmenu", disableShortcutsAndContextMenu);
+    redirectToMobile();
+  };
 </script>
 </head>
 <body>
